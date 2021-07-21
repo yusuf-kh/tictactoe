@@ -33,33 +33,15 @@ public class Game extends Thread {
             grid.printGrid();
 
             if (curChance == 0) {
-                System.out.println("Chance for player " + player1.playerName + " for game " + gameNo);
-                int r = s.nextInt() - 1, c = s.nextInt() - 1;
-
-                Move move = new Move(gameNo, player1, r, c);
-
-                grid.setMove(move);
-
-                if (grid.winnerFound()) {
-                    System.out.println(player1.playerName + " is the winner for game " + gameNo);
-                    winner = player1;
-                }
+                getMoveFromPlayer(player1);
 
             } else {
-                System.out.println("Chance for player " + player2.playerName + " for game " + gameNo);
-                int r = s.nextInt() - 1, c = s.nextInt() - 1;
-
-                Move move = new Move(gameNo, player2, r, c);
-
-                grid.setMove(move);
-
-                if (grid.winnerFound()) {
-                    System.out.println(player2.playerName + " is the winner");
-                    winner = player2;
-                }
+                getMoveFromPlayer(player2);
             }
 
-            if (turns == 9) {
+            turns++;
+
+            if (turns == 9 && winner == null) {
                 System.out.println("Game is drawn");
             }
 
@@ -67,6 +49,22 @@ public class Game extends Thread {
 
         }
 
+    }
+
+    private void getMoveFromPlayer(Player player) {
+
+        System.out.println("Chance for player " + player.playerName + " for game " + gameNo);
+
+        Coordinate position = player.getInput();
+
+        Move move = new Move(gameNo, player, position);
+
+        grid.setMove(move);
+
+        if (grid.winnerFound()) {
+            System.out.println(player.playerName + " is the winner for game " + gameNo);
+            winner = player;
+        }
     }
 
     public boolean gameOver() {

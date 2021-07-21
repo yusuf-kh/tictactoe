@@ -7,7 +7,7 @@ class Grid {
     private int[][] grid = new int[3][3];
 
     public void setMove(Move move) {
-        grid[move.x][move.y] = move.player.playerNo;
+        grid[move.position.x][move.position.y] = move.player.playerNo;
     }
 
     public void printGrid() {
@@ -34,6 +34,7 @@ class Grid {
     }
 
     public boolean winnerFound() {
+        //todo: generify loops
         for (int i = 0; i < 3; i++) {
             boolean all = true;
             for (int j = 1; j < 3; j++) {

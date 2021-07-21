@@ -3,13 +3,13 @@ package tictactoe;
 import tictactoe.Player;
 
 class Move {
-    int gameNo, x, y;
+    int gameNo;
     Player player;
+    Coordinate position;
 
-    Move(int gameNo, Player player, int x, int y) {
+    Move(int gameNo, Player player, Coordinate position) {
         this.gameNo = gameNo;
         this.player = player;
-        this.x = x;
-        this.y = y;
+        this.position = position;
     }
 }
